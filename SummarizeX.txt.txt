@@ -1,0 +1,38 @@
+
+SummarizeX is a client-side application that extracts and summarizes text from PDFs and images. It's built for local development and learning, using the Google Gemini (Generative Language) API for summarization. The app is designed to be run locally, and users can get a quick start by following the steps outlined in the README.
+
+Core Functionality and Workflow
+The app's primary function is a three-step process:
+
+File Upload: Users upload a PDF or image file via the UI.
+
+Text Extraction: The application uses Tesseract OCR for images and PDF.js for PDFs to extract the text content. Once extracted, the document's status changes to "Ready to Generate Summary."
+
+Summary Generation: When the "Generate Summary" button is clicked, the app sends the extracted text to the Google Gemini API to create a summary.
+
+Key Components
+The project is structured with different components handling specific tasks:
+
+src/services/aiService.js: This service manages all interactions with the Gemini API, including sending requests and reading the API key. It checks for the key in a specific order: first from import.meta.env.VITE_GEMINI_API_KEY, then from localStorage.getItem('gemini_api_key'), and lastly from a default key that is not recommended for use.
+
+src/services/documentProcessor.js: This file is responsible for the text extraction logic from both PDFs and images.
+
+src/components/*: This directory contains the UI components, such as the upload panel, status indicators, and the results display.
+
+src/App.jsx: This is the main application file that manages the overall layout and connects the different components.
+
+Configuration and Security
+The Gemini API key is crucial for the app to function. The recommended approach for local development is to store the key in a .env file to keep it separate from the codebase. For quick testing, the key can also be set in the browser's localStorage. The project documentation explicitly warns against committing real API keys to source control and suggests using a server-side proxy for production environments to hide the key from the client.
+
+Troubleshooting and Limitations
+The project README provides common troubleshooting tips:
+
+401 Unauthorized errors usually mean the API key is missing or invalid.
+
+400 Bad Request errors often occur due to an invalid key, lack of API quota, or excessively long input. The app includes a prompt length guard of approximately 30,000 characters to prevent this. For longer documents, the README suggests implementing chunking and summarizing the summaries. This feature is also noted as a development suggestion for future improvement.
+
+
+
+
+
+
