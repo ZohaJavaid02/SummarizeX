@@ -86,9 +86,3 @@ Open the URL printed by Vite (usually http://localhost:5173).
 This project is provided as-is for local development and learning.
 
 
-If you want, I can:
-- Add an `.env.example` file and a short README section showing where to put the key.
-- Implement chunking and merging behavior in the summarizer now.
-- Run the dev server and report the console output.
-
-Tell me which you'd like next.
